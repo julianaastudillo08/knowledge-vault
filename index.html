@@ -6,33 +6,47 @@
   <title>Knowledge Vault</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <div class="app">
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <header class="sidebar-head">
         <h1>Knowledge Vault</h1>
-        <input type="search" id="search" placeholder="Buscar notas…" />
+        <input type="search" id="search" placeholder="Buscar notas…" autocomplete="off" />
       </header>
       <div class="folder-tools">
         <button type="button" id="new-folder" class="btn small">+ Carpeta</button>
+        <button type="button" id="import-json" class="btn small">Importar</button>
+        <button type="button" id="export-json" class="btn small">Exportar</button>
+        <input type="file" id="import-file" accept="application/json,.json" hidden />
       </div>
-      <nav id="folder-tree" class="folder-tree"></nav>
-      <p class="sidebar-foot">Notas locales · Markdown</p>
+      <section class="tag-cloud-wrap">
+        <h2 class="sidebar-section">Etiquetas</h2>
+        <div id="tag-cloud" class="tag-cloud"></div>
+      </section>
+      <section class="favorites-wrap">
+        <h2 class="sidebar-section">Favoritos</h2>
+        <div id="favorites-list" class="favorites-list"></div>
+      </section>
+      <nav id="folder-tree" class="folder-tree" aria-label="Carpetas"></nav>
+      <p class="sidebar-foot"><kbd>J</kbd>/<kbd>K</kbd> navegar · <kbd>R</kbd> lectura</p>
     </aside>
+    <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Menú">☰</button>
     <section class="editor-pane">
       <div class="editor-toolbar">
         <input type="text" id="note-title" placeholder="Título de la nota" />
         <input type="text" id="note-tags" placeholder="Etiquetas: api, diseño…" />
         <div class="toolbar-actions">
+          <button type="button" id="pin-note" class="btn small" title="Fijar favorito">☆</button>
+          <button type="button" id="reading-mode" class="btn small">Modo lectura</button>
           <button type="button" id="new-note" class="btn small">Nueva nota</button>
           <button type="button" id="delete-note" class="btn small danger">Eliminar</button>
         </div>
       </div>
-      <div class="split">
+      <div class="split" id="editor-split">
         <textarea id="note-body" placeholder="Escribe en Markdown…"></textarea>
         <article id="preview" class="preview prose"></article>
       </div>
