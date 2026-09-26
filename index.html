@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <header class="sidebar-head">
+        <h1>Knowledge Vault</h1>
+        <input type="search" id="search" placeholder="Buscar notas…" />
+      </header>
+      <div class="folder-tools">
+        <button type="button" id="new-folder" class="btn small">+ Carpeta</button>
+      </div>
+      <nav id="folder-tree" class="folder-tree"></nav>
+      <p class="sidebar-foot">Notas locales · Markdown</p>
+    </aside>
+    <section class="editor-pane">
+      <div class="editor-toolbar">
+        <input type="text" id="note-title" placeholder="Título de la nota" />
+        <input type="text" id="note-tags" placeholder="Etiquetas: api, diseño…" />
+        <div class="toolbar-actions">
+          <button type="button" id="new-note" class="btn small">Nueva nota</button>
+          <button type="button" id="delete-note" class="btn small danger">Eliminar</button>
+        </div>
+      </div>
+      <div class="split">
+        <textarea id="note-body" placeholder="Escribe en Markdown…"></textarea>
+        <article id="preview" class="preview prose"></article>
+      </div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

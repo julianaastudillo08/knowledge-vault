@@ -1,0 +1,213 @@
+:root {
+  --bg: #12141a;
+  --surface: #1a1d26;
+  --border: #2a2f3d;
+  --text: #e8eaef;
+  --muted: #8b93a7;
+  --accent: #c9a962;
+  --danger: #c75c5c;
+  --font-read: "Literata", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-read);
+  min-height: 100vh;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+@media (max-width: 800px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { max-height: 40vh; overflow: auto; }
+}
+
+.sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.sidebar-head h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+#search {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.folder-tools { margin: 1rem 0 0.5rem; }
+
+.folder-tree {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 0.88rem;
+}
+
+.folder-block { margin-bottom: 0.75rem; }
+
+.folder-name {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  cursor: pointer;
+}
+
+.note-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.45rem 0.5rem;
+  margin: 0.15rem 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-read);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.note-item:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+.note-item.active { background: rgba(201, 169, 98, 0.15); color: var(--text); }
+
+.sidebar-foot {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 1rem 0 0;
+}
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.2);
+}
+
+#note-title {
+  flex: 1;
+  min-width: 160px;
+  font-family: var(--font-read);
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  outline: none;
+}
+
+#note-tags {
+  flex: 1;
+  min-width: 140px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.toolbar-actions { display: flex; gap: 0.35rem; }
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn.small { padding: 0.4rem 0.65rem; }
+.btn.danger { color: var(--danger); border-color: rgba(199, 92, 92, 0.4); }
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+}
+
+#note-body {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  padding: 1.25rem;
+  border: none;
+  border-right: 1px solid var(--border);
+  background: #0e1014;
+  color: #c5cad6;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+}
+
+.preview {
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.prose h1, .prose h2, .prose h3 { color: var(--text); margin-top: 1.25em; }
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: rgba(255,255,255,0.06);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+}
+.prose pre {
+  background: #0e1014;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.prose a { color: var(--accent); }
+
+.empty-hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0.5rem;
+}
